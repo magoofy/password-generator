@@ -1,9 +1,9 @@
 //code taken from function, writePassword()
 
-var passwordText = document.querySelector("#password");
-passwordText.value = password;
-// Assignment code here
+    //var passwordText = document.querySelector("#password");
+    //passwordText.value = password;
 
+// Assignment code here
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -13,7 +13,7 @@ function writePassword() {
   var passwordSize = window.prompt("Between 8 and 128, how many characters would you like in your password?");  
   
   // PASSWORD PROMPTS / PARAMETERS
-  if (passwordSize < 8 || passwordSize > 128 || passwordSize || passwordSize != (/^[0-9.,]+$/)) {
+  if (passwordSize < 8 || passwordSize > 128) {
     window.alert("Sorry, you have entered an invalid option. Please try again.")
     writePassword(); 
   } 
@@ -26,39 +26,63 @@ function writePassword() {
   var lowerChar = ["a", "b", "c", "d", "e", "f", "g", "h", 
                   "i", "j", "k", "l", "m", "n", "o", "p", "q", 
                   "r", "s", "t", "u", "v", "w", "x", "y", "z" ];
-  var upperChar = lowerChar.toUpperCase;
+  var upperChar = ["A", "B", "C", "D", "E", "F", "G", "H", 
+                  "I", "J", "K", "L", "M", "N", "O", "P", "Q", 
+                  "R", "S", "T", "U", "V", "W", "X", "Y", "Z" ];
   var numbChar = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   var specChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", 
                   "`", "~", "[", "]", "{", "}", ";", ":", "'", '"', 
                   ",", "<", ".", ">", "/", "?" ];
  
-  for (i = 0; i < passwordSize; i++) {
+  //debugger;
+  var password = [];
+  
+  while (password.length < passwordSize) {
     
     // RANDOMIZES HOW MUCH OF EACH CHARACTER
-    var randomizeLower = (0.5 > Math.random());
-    var randomizeUpper = (0.5 > Math.random());
-    var randomizeNumb = (0.5 > Math.random());
-    var randomizeSpec = (0.5 > Math.random());
+    var randomizeLower = true;
+      if (Math.random() > 0.5) {
+        randomizeLower = false;
+      }
+    var randomizeUpper = true;
+      if (Math.random() > 0.5) {
+        randomizeUpper = false;
+      }
+    var randomizeNumb = true;
+      if (Math.random() > 0.5) {
+        randomizeNumb = false;
+      }
+    var randomizeSpec = true;
+      if (Math.random() > 0.5) {
+        randomizeSpec = false;
+      }
 
     // PASSWORD GENERATION FUNCTION
-    var generatePassword = function() {
       if (lowerCaseConfirm && randomizeLower) {
         var lowerCharInput = Math.floor(Math.random()*lowerChar.length);
+        password.push(lowerCharInput);
       } 
       if (upperCaseConfirm && randomizeUpper) {
         var upperCharInput = Math.floor(Math.random()*upperChar.length);
+        password.push(upperCharInput);
       }
       if (numberConfirm && randomizeNumb) {
         var numbCharInput = Math.floor(Math.random()*numbChar.length);
+        password.push(numbCharInput);
       }
       if (specialConfirm && randomizeSpec) {
-        var specCharInput = Math.floor(Math.random()*numbSpec.length);
+        var specCharInput = Math.floor(Math.random()*specChar.length);
+        password.push(specCharInput);
       }
-    }
+      
+      console.log(lowerCharInput)
+      console.log(upperCharInput)
+      console.log(numbCharInput)
+      console.log(specCharInput)
+      
+    
   }
-  
-  var password = generatePassword();
-      window.alert(password);
+  window.alert(password)
 }
 
 // Add event listener to generate button
