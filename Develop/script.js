@@ -1,19 +1,12 @@
-//code taken from function, writePassword()
-
-    //var passwordText = document.querySelector("#password");
-    //passwordText.value = password;
-
-// Assignment code here
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var passwordSize = window.prompt("Between 8 and 128, how many characters would you like in your password?");  
-  
+  var passwordSize = parseInt(window.prompt("Between 8 and 128, how many characters would you like in your password?"));  
+
   // PASSWORD PROMPTS / PARAMETERS
-  if (passwordSize < 8 || passwordSize > 128) {
+  if (passwordSize < 8 || passwordSize > 128 || passwordSize == "" || passwordSize == null || passwordSize == undefined || passwordSize == NaN) {
     window.alert("Sorry, you have entered an invalid option. Please try again.")
     writePassword(); 
   } 
@@ -34,16 +27,16 @@ function writePassword() {
                   "`", "~", "[", "]", "{", "}", ";", ":", "'", '"', 
                   ",", "<", ".", ">", "/", "?" ];
  
-  //debugger;
-  var password = [];
-  
-  while (password.length < passwordSize) {
+  // ARRAY WHERE CHARACTERS RETURN
+  let passwordArray = [];
+
+  while (passwordArray.length < passwordSize) {
     
     // RANDOMIZES HOW MUCH OF EACH CHARACTER
     var randomizeLower = true;
       if (Math.random() > 0.5) {
         randomizeLower = false;
-      }
+      } 
     var randomizeUpper = true;
       if (Math.random() > 0.5) {
         randomizeUpper = false;
@@ -58,31 +51,29 @@ function writePassword() {
       }
 
     // PASSWORD GENERATION FUNCTION
-      if (lowerCaseConfirm && randomizeLower) {
+      if (lowerCaseConfirm && randomizeLower && passwordArray < passwordSize) {
         var lowerCharInput = Math.floor(Math.random()*lowerChar.length);
-        password.push(lowerCharInput);
+        passwordArray.push(lowerChar[lowerCharInput]);
       } 
-      if (upperCaseConfirm && randomizeUpper) {
+      if (upperCaseConfirm && randomizeUpper && passwordArray < passwordSize) {
         var upperCharInput = Math.floor(Math.random()*upperChar.length);
-        password.push(upperCharInput);
+        passwordArray.push(upperChar[upperCharInput]);
       }
-      if (numberConfirm && randomizeNumb) {
+      if (numberConfirm && randomizeNumb && passwordArray < passwordSize) {
         var numbCharInput = Math.floor(Math.random()*numbChar.length);
-        password.push(numbCharInput);
+        passwordArray.push(numbChar[numbCharInput]);
       }
-      if (specialConfirm && randomizeSpec) {
+      if (specialConfirm && randomizeSpec && passwordArray < passwordSize) {
         var specCharInput = Math.floor(Math.random()*specChar.length);
-        password.push(specCharInput);
+        passwordArray.push(specChar[specCharInput]);
       }
-      
-      console.log(lowerCharInput)
-      console.log(upperCharInput)
-      console.log(numbCharInput)
-      console.log(specCharInput)
-      
-    
   }
-  window.alert(password)
+  
+  // DISPLAYS THE PASSWORD
+  let password = passwordArray.join("");
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
+
 }
 
 // Add event listener to generate button
