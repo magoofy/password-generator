@@ -3,13 +3,15 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var passwordSize = parseInt(window.prompt("Between 8 and 128, how many characters would you like in your password?"));  
+  var passwordSize = parseInt(window.prompt("Between 8 and 128, how many characters would you like in your password?")); 
+  var IsInt = Number.isInteger(passwordSize);
 
   // PASSWORD PROMPTS / PARAMETERS
-  if (passwordSize < 8 || passwordSize > 128 || passwordSize == "" || passwordSize == null || passwordSize == undefined || passwordSize == NaN) {
+  if (passwordSize < 8 || passwordSize > 128 || IsInt === false) {
     window.alert("Sorry, you have entered an invalid option. Please try again.")
-    writePassword(); 
+    return;
   } 
+
   var lowerCaseConfirm = window.confirm("Would you like lowercase characters?");
   var upperCaseConfirm = window.confirm("Would you like upper case characters?");
   var numberConfirm = window.confirm("Would you like numbers?");
@@ -26,7 +28,6 @@ function writePassword() {
   var specChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", 
                   "`", "~", "[", "]", "{", "}", ";", ":", "'", '"', 
                   ",", "<", ".", ">", "/", "?" ];
- 
   // ARRAY WHERE CHARACTERS RETURN
   let passwordArray = [];
 
@@ -50,20 +51,20 @@ function writePassword() {
         randomizeSpec = false;
       }
 
-    // PASSWORD GENERATION FUNCTION
-      if (lowerCaseConfirm && randomizeLower && passwordArray < passwordSize) {
+    // PASSWORD GENERATION FUNCTION  
+    if (lowerCaseConfirm && randomizeLower && (passwordArray.length<passwordSize)) {
         var lowerCharInput = Math.floor(Math.random()*lowerChar.length);
         passwordArray.push(lowerChar[lowerCharInput]);
       } 
-      if (upperCaseConfirm && randomizeUpper && passwordArray < passwordSize) {
+      if (upperCaseConfirm && randomizeUpper && (passwordArray.length<passwordSize)) {
         var upperCharInput = Math.floor(Math.random()*upperChar.length);
         passwordArray.push(upperChar[upperCharInput]);
       }
-      if (numberConfirm && randomizeNumb && passwordArray < passwordSize) {
+      if (numberConfirm && randomizeNumb && (passwordArray.length<passwordSize)) {
         var numbCharInput = Math.floor(Math.random()*numbChar.length);
         passwordArray.push(numbChar[numbCharInput]);
       }
-      if (specialConfirm && randomizeSpec && passwordArray < passwordSize) {
+      if (specialConfirm && randomizeSpec && (passwordArray.length<passwordSize)) {
         var specCharInput = Math.floor(Math.random()*specChar.length);
         passwordArray.push(specChar[specCharInput]);
       }
