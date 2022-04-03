@@ -6,27 +6,34 @@ function writePassword() {
   var passwordSize = parseInt(window.prompt("Between 8 and 128, how many characters would you like in your password?")); 
   var IsInt = Number.isInteger(passwordSize);
 
-  // PASSWORD PROMPTS / PARAMETERS
+  // PASSWORD PROMPTS / PARAMETERS / CONFIRMATIONS 
   if (passwordSize < 8 || passwordSize > 128 || IsInt === false) {
     window.alert("Sorry, you have entered an invalid option. Please try again.")
     return;
   } 
-
   var lowerCaseConfirm = window.confirm("Would you like lowercase characters?");
   if (lowerCaseConfirm) {
-    window.alert("You have chosen to include lower case characters")
+    window.alert("You have chosen to include lower case characters");
+  } else {
+    window.alert("You have chosen to exclude lower case characters");
   }
   var upperCaseConfirm = window.confirm("Would you like upper case characters?");
   if (upperCaseConfirm) {
     window.alert("You have chosen to include upper case characters")
+  } else {
+    window.alert("You have chosen to exclude upper case characters");
   }
   var numberConfirm = window.confirm("Would you like numbers?");
   if (numberConfirm) {
-    window.alert("You have chosen to include numbers.")
+    window.alert("You have chosen to include numbers.");
+  } else {
+    window.alert("You have chosen to exclude numbers.");
   }
   var specialConfirm = window.confirm("Would you like special characters?");
   if (specialConfirm) {
-    window.alert("You have chosen to include special characters")
+    window.alert("You have chosen to include special characters");
+  } else {
+    window.alert("You have chosen to exclude special characters");
   }
 
   
