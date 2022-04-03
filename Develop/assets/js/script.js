@@ -13,9 +13,28 @@ function writePassword() {
   } 
 
   var lowerCaseConfirm = window.confirm("Would you like lowercase characters?");
+  if (lowerCaseConfirm) {
+    window.alert("You have chosen to include lower case characters")
+  }
   var upperCaseConfirm = window.confirm("Would you like upper case characters?");
+  if (upperCaseConfirm) {
+    window.alert("You have chosen to include upper case characters")
+  }
   var numberConfirm = window.confirm("Would you like numbers?");
+  if (numberConfirm) {
+    window.alert("You have chosen to include numbers.")
+  }
   var specialConfirm = window.confirm("Would you like special characters?");
+  if (specialConfirm) {
+    window.alert("You have chosen to include special characters")
+  }
+
+  
+  // IF USER DOES NOT CHOOSE ANY OF THE OPTIONS
+  if (lowerCaseConfirm === false && upperCaseConfirm === false && numberConfirm === false && specialConfirm === false) {
+    window.alert("Sorry, you need to select at least one of the options. Please try again.")
+    return;
+  }
 
   // CHARACTER TABLE
   var lowerChar = ["a", "b", "c", "d", "e", "f", "g", "h", 
@@ -28,6 +47,7 @@ function writePassword() {
   var specChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", 
                   "`", "~", "[", "]", "{", "}", ";", ":", "'", '"', 
                   ",", "<", ".", ">", "/", "?" ];
+  
   // ARRAY WHERE CHARACTERS RETURN
   let passwordArray = [];
 
